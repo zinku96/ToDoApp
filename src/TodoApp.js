@@ -101,7 +101,7 @@ class TodoApp extends React.Component{
           if (list[i].isEditing === false){
             returnArray.push(
               <tr key={list[i].row}>
-                <td><input type="checkbox" id={list[i].row} onChange={(event) => this.handleCheckbox(event,list[i].row)}></input></td>
+                <td><input type="checkbox"  id={list[i].row} onChange={(event) => this.handleCheckbox(event,list[i].row)} checked={list[i].isDone ? true : false}/></td>
                 <td><label for={list[i].row}>{list[i].value}</label></td>
                 <td>
                   <button onClick={(event) => this.handleEditButton(event,list[i].row,"edit")}>Edit</button>
@@ -113,7 +113,7 @@ class TodoApp extends React.Component{
             returnArray.push(
               <tr key={list[i].row}>
                 <td>{list[i].isDone ? "Done" : "Not Done"} </td>
-                <td><input value={list[i].editValue} onChange={() => this.handleEditInput(list[i].row)}></input></td>
+                <td><input value={list[i].editValue} onChange={(event) => this.handleEditInput(event,list[i].row)}></input></td>
                 <td>
                 <button onClick={(event) => this.handleEditButton(event,list[i].row,"save")}>Save</button>
                 <button onClick={(event) => this.handleEditButton(event,list[i].row,"cancel")}>Cancel</button>
