@@ -1,4 +1,30 @@
-.todo-list{
-  border:1px solid #888;
+body{}
+.todo-app{
+  width:60vw;
+  margin: 0 auto 0 auto;
 }
-
+.todo-input{
+  display:flex;
+  justify-content: space-between;
+}
+.todo-input input{
+  height:4vw;
+  width: 50vw;
+  outline:none;
+  padding: 0 1vw 0 1vw;
+  margin:0;
+}
+.todo-input button{
+  height:4.5vw;
+  width:5vw;
+  border:none;
+  background: #1097cc;
+  color:#fff;
+  float:right;
+}
+.todo-list th{
+  width:20vw;
+}
+.todo-list td{
+  border:0.2vw solid #ddd;
+}
