@@ -137,14 +137,16 @@ class TodoApp extends React.Component{
   render(){
     return (
       <div className="todo-app">
-        <form className="todo-input">
-          <input type="text" value={this.state.inputAdd} placeholder="Do something?" onChange={(event) => this.handleInput(event,"")}></input>
-          <button onClick={(event) => this.handleAddButton(event)}>Add</button>
-        </form>
         <table className="todo-list">
           <tbody>
             <tr>
-              <th>Done ?</th>
+              <th colSpan="3">
+                <input type="text" value={this.state.inputAdd} placeholder="Do something?" onChange={(event) => this.handleInput(event,"")}></input>
+                <button onClick={(event) => this.handleAddButton(event)}>Add</button>
+              </th>
+            </tr>
+            <tr>
+              <th>Done?</th>
               <th>Task</th>
               <th>Action</th>
             </tr>
