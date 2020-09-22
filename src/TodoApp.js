@@ -1,5 +1,7 @@
 import React from 'react';
 import './TodoApp.css';
+import TodoRows from './TodoRows';
+
 
 class TodoApp extends React.Component{
   constructor(props){
@@ -19,6 +21,7 @@ class TodoApp extends React.Component{
     this.handleRemoveButton = this.handleRemoveButton.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
+  
   handleAddButton(event){
     event.preventDefault();
     let list = this.state.list;
@@ -74,6 +77,7 @@ class TodoApp extends React.Component{
     });
     this.setState({list: filters,listCount: listCount});
   }
+
   handleInput(event,row){
     if(event.target.type === "text") {
       if(row === ""){
@@ -97,43 +101,6 @@ class TodoApp extends React.Component{
     }
   }
   
-  renderRow(){
-    const listCount = this.state.list.length;
-    if(listCount > 0){ 
-      const list = this.state.list;
-      let returnArray = [];
-      for(let i=0; i < list.length; i++){
-        if(list[i].row !== "" && list[i].value !== ""){
-          if (list[i].isEditing === false){
-            returnArray.push(
-              <tr key={list[i].row}>
-                <td><input checked={list[i].isDone ? true : false} type="checkbox" id={list[i].row} onChange={(event) => this.handleInput(event,list[i].row)}></input></td>
-                <td><label htmlFor={list[i].row}>{list[i].value}</label></td>
-                <td>
-                  <button onClick={(event) => this.handleEditButton(event,list[i].row,"edit")}>Edit</button>
-                  <button onClick={(event) => this.handleRemoveButton(event,list[i].row)}>Del</button>
-                </td>
-              </tr>
-            );
-          }else{
-            returnArray.push(
-              <tr key={list[i].row}>
-                <td>{list[i].isDone ? "Done" : "Not Done"} </td>
-                <td><input type="text" value={this.state.list[i].inputEdit} onChange={(event) => this.handleInput(event,list[i].row)}></input></td>
-                <td>
-                <button onClick={(event) => this.handleEditButton(event,list[i].row,"save")}>Save</button>
-                <button onClick={(event) => this.handleEditButton(event,list[i].row,"cancel")}>Cancel</button>
-                </td>
-              </tr>
-            );
-          }
-          
-        }
-      }
-      return returnArray;
-    }
-  }
-  
   render(){
     return (
       <div className="todo-app">
@@ -150,7 +117,8 @@ class TodoApp extends React.Component{
               <th>Task</th>
               <th>Action</th>
             </tr>
-            {this.renderRow()}
+            {/* {this.renderRow()} */}
+            <TodoRows list={this.state.list} handleInput={this.handleInput} handleEditButton={this.handleEditButton} handleRemoveButton={this.handleRemoveButton}/>
           </tbody>
         </table>
       </div>
